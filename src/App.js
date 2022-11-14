@@ -1,8 +1,9 @@
-import Button from "@mui/material/Button";
+import { Navigation } from "./routes";
+
 function App() {
   return (
     <div className="App">
-      <Button variant="contained">Hello World</Button>
+      <Navigation />
     </div>
   );
 }

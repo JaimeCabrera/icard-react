@@ -5,6 +5,6 @@ export const routesClient = [
   {
     path: "/",
     layout: ClientLayout,
-    element: Home,
+    component: Home,
   },
 ];
