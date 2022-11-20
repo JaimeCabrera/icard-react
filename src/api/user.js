@@ -26,7 +26,7 @@ export const getMyInfo = async (token) => {
     const url = `${BASE_URL}/api/auth/me`;
     const params = {
       headers: {
-        Authorization: `Barer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const response = await fetch(url, params);
