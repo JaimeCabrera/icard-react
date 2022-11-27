@@ -1,4 +1,5 @@
 import React from "react";
+import { SideMenu } from "../../components/Admin/SideMenu";
 import { TopMenu } from "../../components/Admin/TopMenu";
 import { useAuth } from "../../hooks";
 import { LoginAdmin } from "../../pages/admin";
@@ -15,7 +16,9 @@ export const AdminLayout = (props) => {
       <div className="admin-layout__menu">
         <TopMenu />
       </div>
-      <div className="admin-layout__main-content">{children}</div>
+      <div className="admin-layout__main-content">
+        <SideMenu>{children}</SideMenu>
+      </div>
     </div>
   );
 };
