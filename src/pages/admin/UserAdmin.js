@@ -29,7 +29,7 @@ export const UserAdmin = () => {
     open_close_modal();
   };
   return (
-    <div>
+    <>
       <HeaderPage
         title="Usuarios"
         btnAddUser="Agregar usuario"
@@ -49,6 +49,6 @@ export const UserAdmin = () => {
         title={titleModal}
         children={content}
       />
-    </div>
+    </>
   );
 };

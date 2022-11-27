@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getMyInfo, get_users_api } from "../api/user";
+import { add_new_user_api, getMyInfo, get_users_api } from "../api/user";
 import { useAuth } from "./useAuth";
 
 export const useUser = () => {
@@ -26,11 +26,24 @@ export const useUser = () => {
       setError(error);
     }
   };
+
+  const add_new_user = async (user) => {
+    try {
+      setLoading(true);
+      await add_new_user_api(user, auth.token);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error);
+    }
+  };
+
   return {
     loading,
     users,
     error,
     get_user_auth,
     get_all_users,
+    add_new_user,
   };
 };

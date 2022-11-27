@@ -2,19 +2,24 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Button, Form } from "semantic-ui-react";
 import * as Yup from "yup";
+import { useUser } from "../../../hooks";
 import "./userform.scss";
 export const UserForm = () => {
   const [isActive, setIsActive] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const { add_new_user } = useUser();
 
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(newSchema()),
-    validateOnChange: true,
-    onSubmit: (formValue) => {
-      alert("Hola");
-      console.log("click aca");
-      console.log(formValue);
+    validateOnChange: false,
+    onSubmit: async (formValues) => {
+      try {
+        await add_new_user(formValues);
+        console.log("enviando", formValues);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -63,22 +68,25 @@ export const UserForm = () => {
       <div className="user-form__active">
         <Form.Checkbox
           name="is_active"
-          toggle="true"
+          id="is_active"
+          toggle
           checked={isActive}
+          value={isActive}
           onClick={() => {
             setIsActive(!isActive);
           }}
-          content="Activo"
           label="Usuario Activo"
+          onChange={formik.handleChange}
         />
         <Form.Checkbox
-          name="is_staff"
+          id="is_staff"
           toggle
           checked={isAdmin}
+          value={isAdmin}
           onClick={() => {
             setIsAdmin(!isAdmin);
           }}
-          content="Activo"
+          onChange={formik.handleChange}
           label="Usuario Administrador"
         />
       </div>
@@ -105,8 +113,8 @@ const newSchema = () => {
     email: Yup.string().email(true).required(true),
     first_name: Yup.string(),
     last_name: Yup.string(),
-    is_active: Yup.bool().required(true),
-    is_staff: Yup.bool().required(true),
+    is_active: Yup.bool(),
+    is_staff: Yup.bool(),
     password: Yup.string().required(true),
   };
 };

@@ -6,7 +6,7 @@ export const UsersTable = (props) => {
   console.log(users);
   if (users) {
     return (
-      <Table className="table-users-admin">
+      <Table className="table-users-admin" selectable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Usuario</Table.HeaderCell>
@@ -40,9 +40,7 @@ export const UsersTable = (props) => {
                     <Icon name="close" />
                   )}
                 </Table.Cell>
-                <Table.Cell>
-                  <Actions user={user} />
-                </Table.Cell>
+                <Actions user={user} />
               </Table.Row>
             );
           })}
