@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../../hooks";
 
 const initialValues = {
-  email: "",
-  password: "",
+  email: "admin@admin.com",
+  password: "admin",
 };
 
 export const LoginForm = () => {
@@ -39,6 +39,7 @@ export const LoginForm = () => {
           error={formik.errors.email}
         />
         <Form.Input
+          autoComplete="off"
           name="password"
           type="password"
           placeholder="Contraseña"
